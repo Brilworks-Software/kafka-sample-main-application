@@ -1,0 +1,22 @@
+Step 1: Install docker on your machine
+
+Step2 : Use the below command to start kafka and zookeeper in your local
+docker-compose -f docker-compose.yml up -d
+
+Step3: Validate the kafka is running or not using below command
+docker ps
+
+Step4: Connect to kafka shell
+docker exec -it kafka /bin/sh
+
+Step5: Create your first kafka topic with name "channel" using below command, In this topic producer will post the data
+kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic channel
+
+Step6: We also need a consumer or listener where we can see the the data posted on channel topic. Use below command to run a cli consumer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic channel --from-beginning
+
+Step7: Run the main application, This will produce the data to topic name "Channel" & you can see the consumer showing the data posted on topic name "channel"
+
+Reference Link:
+https://www.youtube.com/watch?v=bwXWIx5dZjw
+https://towardsdatascience.com/how-to-install-apache-kafka-using-docker-the-easy-way-4ceb00817d8b
